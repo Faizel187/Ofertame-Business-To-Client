@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<?php
+  include_once("model.php");
+  session_start();
+?>
+<html lang="en">
+<head>
+  <title>OFERTAME</title>
+  <meta charset="ANSI">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="scripts/DatosOferta.js"></script>
+  <script type="text/javascript" src="scripts/DatosFiltro.js"></script>
+  <script src="scripts/filter.js"></script>
+
+</head>
+<body>
+<nav class="navbar navbar-default center">
+    <div class="container">
+      <div class="flex-container">
+        <div class="navbar-header flex-item">
+           <a class="ofertame" href="main.html">OFERTAME</a>
+        </div>
+        
+        <ul class="nav navbar-nav flex-item visible-xs">
+
+                <a href="perfil.html">
+                    <?php
+                    if(isset($_SESSION['email']))
+                    {
+                       echo($_SESSION['email']);
+
+                    }               
+                     ?>
+                   </a>
+
+                  <?php
+                    if(!isset($_SESSION['email']))
+                    {
+                      echo("<a href='login.html'>ENTRAR</a>");
+                    }               
+                  ?>
+                  <br>
+                  <?php
+                    if(!isset($_SESSION['email']))
+                    {
+                      echo("<a href='register.html'>CREAR CUENTA</a>");
+                    } 
+                    else
+                    {
+                      echo("<a href='logout.php'>SALIR</a>");
+                    }              
+                  ?>
+        </ul>
+
+        <ul class="nav navbar-nav flex-item pull-right">
+        <nav class="menu">
+            <ul class="hidden-xs">
+              <li>
+                <a href="perfil.html">
+                    <?php
+                    if(isset($_SESSION['email']))
+                    {
+                       echo($_SESSION['email']);
+                    }               
+                     ?>
+                   </a>
+              </li>
+              <li>
+                  <?php
+                    if(!isset($_SESSION['email']))
+                    {
+
+                      echo("<a href='login.html'>ENTRAR</a>");
+                    }               
+                  ?>
+              </li>
+                  <?php
+                    if(!isset($_SESSION['email']))
+                    {
+                      echo("<li><a href='register.html'>CREAR CUENTA</a></li>");
+                    } 
+                    else
+                    {
+                      echo("<li><a href='logout.php'>SALIR</a></li>");
+                    }              
+                  ?>
+            </ul>
+
+          </nav>
+
+        </ul>
+        </div>  
+    </div>
+    </nav>
+<nav class="navbar navbar-default">
+    <div class="container">
+      <div class="flex-container">  
+        <div class="navbar-header flex-item">
+          <nav class="menu">
+                  <div class="row">
+                    <div class="col-md-12 hidden-xs">
+                  <?php
+                    menuCategorys();
+                  ?>
+              </div>
+                <ul class="visible-xs center">
+                    <li class="nav-item dropdown">
+                      <center>
+                    <a class="nav-link dropdown-toggle" style="font-size: 26px; background-color: transparent; border: 1px solid #666; border-radius: 8px; width: 50%;" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      MENU
+                    </a>
+                    <div class='dropdown-menu' aria-labelledby='navbarDropdown'>
+                  <?php
+                    menuCategorysBoostrap();
+                  ?>
+                </div>
+              </center>
+                </li>
+                </div>
+                </ul>
+                <br>
+              </nav>
+            </div>
+        </div>  
+    </div>
+</nav>
+
+<center>
+    <div class="container " id="content-block-2">
+    <div class="row white borderRadius">
+        <?php
+        if(!isset($_SESSION['filter']))
+        {
+          if(isset($_SESSION['email']))
+          {
+            if(CountFavs($_SESSION['email']) > 0)
+            {
+              echo "<div class='col-md-12'>";
+              echo " <h2 class='text-center content-title'>MIS GUSTOS</h2>";
+              echo "</div>";
+            }
+          }
+
+          if(isset($_SESSION['email']))
+          {
+            MyFavs($_SESSION['email']);
+          }
+          else
+          {
+            MyFavs("");
+          }
+        }
+        ?>
+
+    </div>
+  </div><!--/Content Block -->
+  <br>
+
+
+
+    <!-- Content Block-->
+    <div class="container" id="content-block-2">
+      
+    <div class="row white borderRadius "style="min-height: 500px;">
+      <div class="col-md-12">
+        <h2 class="text-center content-title">OFERTAS DISPONIBLES</h2>
+      </div>
+
+      <div id="quitar" class="quitar">
+        <?php
+        if(isset($_SESSION['filter']))
+        {
+            FilterOffers($_SESSION['filter']);
+            unset($_SESSION['filter']);
+        }
+        else
+        {
+            if(isset($_SESSION['email']))
+            {
+              RestOfOffers($_SESSION['email']);
+            }
+            else
+            {
+              RestOfOffers("");
+            }
+        }
+        ?>
+     </div>
+
+    </div>
+
+
+  </div><!--/Content Block -->
+
+
+<br>
+<br>
+<!-- Footer -->
+  <section id="footer">
+    <div class="container">
+      <div class="row text-center text-xs-center text-sm-left text-md-left">
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <p class="t_footer">MI CUENTA</p>
+          <ul class="list-unstyled quick-links">
+            <li>
+              <a href="perfil.html">
+                    <?php
+                    if(isset($_SESSION['email']))
+                    {
+                       echo($_SESSION['email']);
+                    }               
+                     ?>
+              </a>
+            </li>
+            <li>
+              <?php
+                    if(!isset($_SESSION['email']))
+                    {
+                      echo("<a href='login.html'>ENTRAR</a>");
+                    }               
+                  ?>
+            </li><?php
+                    if(!isset($_SESSION['email']))
+                    {
+                      echo("<a href='register.html'>CREAR CUENTA</a>");
+                    } 
+                    else
+                    {
+                      echo("<li><a href='mis-reservas.html'>MIS RESERVAS</a></li>");
+                      echo("<li><a href='mis-datos.html'>MIS DATOS</a></li>");
+                      echo("<li><a href='mis-gustos.html'>MIS GUSTOS</a></li>");
+                      echo("<li><a href='logout.php'>SALIR</a><li>");
+                    }              
+                  ?>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+         <p class="t_footer">CATEGORIAS</p>
+          <ul class="list-unstyled quick-links">
+             <?php
+                footerCategorys();
+              ?>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <p class="t_footer">SOCIAL</p>
+          <ul class="list-unstyled quick-links">
+             <li><a href='#facebook'>FACEBOOK</a></li>
+             <li><a href='#twitter'>TWITTER</a></li>
+             <li><a href='#instagram'>INSTAGRAM</a></li>
+             <li><a href='#gplus'>GOOGLE+</a></li>
+
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+          <p class="h6">&copy OFERTAME - Todos los derechos reservados.</p>
+        </div>
+        </hr>
+      </div>  
+    </div>
+  </section>
+
+
+  <!-- ./Footer -->
+
+</body>
+
+
+
+</html>
+

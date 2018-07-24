@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<?php
+include_once("model.php");
+session_start();
+CheckSession();
+?>
+<html lang="en">
+<head>
+  <title>OFERTAME</title>
+  <meta charset="ansi">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="scripts/DatosTicket.js"></script>  
+  <script src="scripts.js"></script>
+</head>
+<body>
+<!-- Content Block-->
+<nav class="navbar navbar-default">
+    <div class="container">
+      <div class="flex-container">  
+        <div class="navbar-header flex-item">
+          <center>
+            <a class="ofertame" href="main.html">OFERTAME</a>
+          <center>
+        </div>
+
+        <ul class="nav navbar-nav flex-item">
+        </ul>
+
+        <ul class="nav navbar-nav flex-item pull-right hidden-xs">
+        <nav class="menu">
+            <ul>
+              <li>
+                <a href="perfil.html">
+                 <?php
+                    echo($_SESSION['email']);               
+                  ?>
+                </a>
+              </li>
+              <li>
+                <a href="logout.php">SALIR</a>
+              </li>
+            </ul>
+          </nav>
+
+        </ul>
+        <nav class="menu visible-xs">
+          <center>
+                <a href="perfil.html">
+                 <?php
+                    echo($_SESSION['email']);               
+                  ?>
+                </a>
+                <a href="logout.php">SALIR</a>
+          </center>
+          </nav>
+        </div>
+      </div>
+    </nav>
+
+ <div class="container marginbotton " id="content-block-2">
+    <div class="row white border-radi" >
+
+    </div>
+    <div class="row white borderRadius" style="min-height: 500px;">
+      <div class="col-md-12">
+        <h2 class="text-center content-title">HISTORIAL DE OFERTAS RESERVADAS</h2>
+
+      </div>
+       <!-- <div class="col-md-3">
+        <br>
+        <div class="icon"><a href="#"><img src="img/ofertas/cine.png" height="100%" width="100%"></img></a> </div>
+        <p class="text-justify">Hasta domingo 11</p>
+      </div>  -->
+
+      <?php
+        historial($_SESSION['email']);
+      ?>
+             <div class="col-md-12">
+              <br>
+        <center>
+        <p>*Muestra todo el historial de ofertas reservadas hasta las caducadas.</p>
+      </center>
+      </div>
+    </div>
+  </div><!--/Content Block -->
+
+  <br>
+<!-- Footer -->
+ <section id="footer">
+    <div class="container">
+      <div class="row text-center text-xs-center text-sm-left text-md-left">
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <p class="t_footer">MI CUENTA</p>
+          <ul class="list-unstyled quick-links">
+            <li>
+              <a href="perfil.html">
+                    <?php
+                    if(isset($_SESSION['email']))
+                    {
+                       echo($_SESSION['email']);
+                    }               
+                     ?>
+              </a>
+            </li>
+            <li>
+              <?php
+                    if(!isset($_SESSION['email']))
+                    {
+                      echo("<a href='login.html'>ENTRAR</a>");
+                    }               
+                  ?>
+            </li><?php
+                    if(!isset($_SESSION['email']))
+                    {
+                      echo("<a href='register.html'>CREAR CUENTA</a>");
+                    } 
+                    else
+                    {
+                      echo("<li><a href='mis-reservas.html'>MIS RESERVAS</a></li>");
+                      echo("<li><a href='mis-datos.html'>MIS DATOS</a></li>");
+                      echo("<li><a href='mis-gustos.html'>MIS GUSTOS</a></li>");
+                      echo("<li><a href='logout.php'>SALIR</a><li>");
+                    }              
+                  ?>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+         <p class="t_footer">CATEGORIAS</p>
+          <ul class="list-unstyled quick-links">
+             <?php
+                footerCategorys();
+              ?>
+          </ul>
+        </div>
+        <div class="col-xs-12 col-sm-4 col-md-4">
+          <p class="t_footer">SOCIAL</p>
+          <ul class="list-unstyled quick-links">
+             <li><a href='#facebook'>FACEBOOK</a></li>
+             <li><a href='#twitter'>TWITTER</a></li>
+             <li><a href='#instagram'>INSTAGRAM</a></li>
+             <li><a href='#gplus'>GOOGLE+</a></li>
+
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+          <p class="h6">&copy OFERTAME - Todos los derechos reservados.</p>
+        </div>
+        </hr>
+      </div>  
+    </div>
+  </section>
+  <!-- ./Footer -->
+
+
+</body>
+</html>
+

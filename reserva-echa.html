@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<?php
+session_start();
+?>
+<html lang="en">
+<head>
+  <title>OFERTAME</title>
+  <meta charset="ANSI">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="scripts.js"></script>
+  <script src="scripts/datoGustos.js"></script>
+
+</head>
+<body>
+<!-- Content Block-->
+<br>
+<br>
+
+
+  <center>
+    <div class="container hidden-xs">
+      <div class="row" style="width: 40%; font-size:45px; border: 2px solid #333;">
+
+        <div class="col-md-12">
+          <p style="font-family: 'Montserrat-Light'; color: #333;  border: none;  text-decoration: none;">OFERTAME</p>
+        </div>
+
+        <div class="col-md-12" style=" background-color: #333;">
+          <p style="font-family: 'Montserrat-Light'; font-size: 20px; color: #fff; margin-buttom:5px;">DATOS DEL USUARIO</p>
+        </div>
+
+        <div class="col-md-12">
+          <p style="font-size:18px;">
+              <?php
+                echo($_SESSION['username']); 
+                echo " ";
+                echo($_SESSION['lastname']);  
+               ?>
+          </p>
+          <p style="font-size:18px;">
+            <?php
+               echo($_SESSION['dni']);               
+            ?>
+          </p>
+          <p style="font-size:18px;">
+            <?php
+               echo($_SESSION['birthday']);               
+            ?>
+          </p>
+        </div>
+        <div class="col-md-12" style=" background-color: #333;" >
+          <p style="font-family: 'Montserrat-Light'; font-size: 20px; color: #fff; padding-top: 10px;">RESERVA</p>
+        </div>
+        <div class="col-md-12">
+          <p style="font-size:18px;">Identificador de la reserva: 
+              <?php
+                echo($_SESSION['reservationID']);               
+              ?>
+          </p>
+          <p style="font-size:18px;"> 
+              <?php
+                echo($_SESSION['tittle']);               
+              ?>
+          </p>
+          <p style="font-size:18px;">
+              <?php
+                echo($_SESSION['description']);               
+              ?>
+          </p>
+          <p style="font-size:18px;">
+            <?php
+               echo($_SESSION['endDate']);               
+            ?>
+        </p>
+          <p style="font-size:18px;">
+              <?php
+                echo($_SESSION['company']);               
+              ?>
+          </p>
+        </div>
+      </div>
+    </div>
+  </center>
+<center>
+    <div class="container visible-xs">
+      <div class="row" style="width: 50%; font-size:25px; border: 2px solid #333;">
+
+        <div class="col-md-12">
+          <p style="font-family: 'Montserrat-Light'; color: #333;  border: none;  text-decoration: none;">OFERTAME</p>
+        </div>
+
+        <div class="col-md-12" style=" background-color: #333;">
+          <p style="font-family: 'Montserrat-Light'; font-size: 20px; color: #fff; margin-buttom:5px;">DATOS DEL USUARIO</p>
+        </div>
+
+        <div class="col-md-12">
+          <p style="font-size:18px;">
+              <?php
+                echo($_SESSION['username']); 
+                echo " ";
+                echo($_SESSION['lastname']);  
+               ?>
+          </p>
+          <p style="font-size:18px;">
+            <?php
+               echo($_SESSION['dni']);               
+            ?>
+          </p>
+          <p style="font-size:18px;">
+            <?php
+               echo($_SESSION['birthday']);               
+            ?>
+          </p>
+        </div>
+        <div class="col-md-12" style=" background-color: #333;" >
+          <p style="font-family: 'Montserrat-Light'; font-size: 20px; color: #fff; padding-top: 10px;">RESERVA</p>
+        </div>
+        <div class="col-md-12">
+          <p style="font-size:18px;">Identificador de la reserva: 
+              <?php
+                echo($_SESSION['reservationID']);               
+              ?>
+          </p>
+          <p style="font-size:18px;"> 
+              <?php
+                echo($_SESSION['tittle']);               
+              ?>
+          </p>
+          <p style="font-size:18px;">
+              <?php
+                echo($_SESSION['description']);               
+              ?>
+          </p>
+          <p style="font-size:18px;">
+            <?php
+               echo($_SESSION['endDate']);               
+            ?>
+        </p>
+          <p style="font-size:18px;">
+              <?php
+                echo($_SESSION['company']);               
+              ?>
+          </p>
+        </div>
+      </div>
+    </div>
+  </center>
+
+</body>
+</html>
+
